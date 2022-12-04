@@ -5,6 +5,11 @@
   .header {
     .logo {
       padding: 1em;
+      position: absolute;
+      top: 0;
+      @include tablet-up {
+        position: static;
+      }
 
       img {
         width: 7rem;
@@ -17,9 +22,62 @@
     display: flex;
     flex-direction: column-reverse;
     place-items: center;
+    margin-top: 4rem;
+    overflow: hidden;
+
+    @include tablet-up {
+      flex-direction: row;
+      place-content: center;
+      height: 100vh;
+      place-items: stretch;
+      margin: auto;
+
+      .info {
+        flex: 0.6;
+        max-width: 39.375rem;
+        align-self: center;
+        background: url('/bg-pattern-desktop.svg') no-repeat center;
+        object-fit: cover;
+        height: 100%;
+        padding: 1em;
+
+        .logo {
+          margin-bottom: 2em;
+        }
+
+        &__header {
+          font-size: 3.6rem !important;
+          max-width: 60%;
+          text-align: justify;
+        }
+
+        &__description {
+          text-align: justify;
+          font-size: 1.1rem !important;
+        }
+
+        &__description,
+        .email {
+          max-width: 45ch;
+        }
+      }
+
+      .hero {
+        flex: 0.4;
+        img,
+        picture {
+          display: unset;
+        }
+        img {
+          height: 100%;
+          display: inline;
+        }
+      }
+    }
 
     .info {
       text-align: center;
+      padding-inline: 1em;
 
       &__header {
         font-size: 2.3rem;
@@ -27,6 +85,7 @@
         padding: 1rem 0;
         font-weight: 300;
         text-transform: uppercase;
+        margin-top: 1em;
 
         .coming {
           color: #000;
@@ -35,43 +94,55 @@
       }
 
       &__description {
-        margin-bottom: 1em;
-        font-size: 0.8625rem;
+        font-size: 0.725rem;
+        line-height: 1.5;
       }
     }
 
     .email {
-      margin-inline: auto;
       position: relative;
-      max-width: max-content;
+      margin-top: 1em;
+
+      input[type='email'] {
+        border-radius: 2em;
+        background-color: transparent;
+        border: 2px solid #a9a9a9e0;
+        padding: 0.25em 1em;
+        padding-right: 3rem;
+        outline: none;
+        font-size: 1.2rem;
+        width: 100%;
+      }
 
       .btn--subscribe {
         position: absolute;
         top: 0;
-        right: 0;
-        width: 3.5rem;
-        height: 100%;
-        margin: auto 0;
+        right: -0.5em;
+        bottom: 0;
         border-radius: 38%;
         border: none;
-        background-color: lighten($secondary-clr, 10%);
-        box-shadow: -2px 5px 5px 0px $primary-clr;
-        display: flex;
+        background: linear-gradient(
+          90deg,
+          lighten($primary-clr, 10%),
+          $secondary-clr
+        );
+        box-shadow: -1px 2px 2px 0px $primary-clr;
+        width: 4rem;
+        cursor: pointer;
+
+        &:hover {
+          background: linear-gradient(
+            -90deg,
+            lighten($primary-clr, 10%),
+            $secondary-clr
+          );
+        }
 
         .icon {
           width: unset;
           min-width: unset;
           margin: auto;
         }
-      }
-      input[type='email'] {
-        border-radius: 2em;
-        background-color: transparent;
-        border: 1px solid #a9a9a9;
-        padding: 0.25em 1em;
-        padding-right: 3rem;
-        outline: none;
-        font-size: 1.2rem;
       }
     }
   }

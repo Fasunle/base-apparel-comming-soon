@@ -1,22 +1,22 @@
 import React from 'react';
 import logo from './assets/logo.svg';
 import arrowIcon from './assets/icon-arrow.svg';
+import backgroundPattern from './assets/bg-pattern-desktop.svg';
 import heroMobileImage from './assets/hero-mobile.jpg';
 import heroDesktopImage from './assets/hero-desktop.jpg';
 
 const App = () => {
   return (
     <div className='app'>
-      <header className='header'>
-        <nav className='navbar'>
-          <div className='logo'>
-            <img src={logo} alt='Base Apparel' />
-          </div>
-        </nav>
-      </header>
-
       <main className='content'>
         <div className='info'>
+          <header className='header'>
+            <nav className='navbar'>
+              <div className='logo'>
+                <img src={logo} alt='Base Apparel' />
+              </div>
+            </nav>
+          </header>
           <h1 className='info__header'>
             We're <span className='coming'>coming soon</span>
           </h1>
@@ -36,6 +36,7 @@ const App = () => {
               <img className='icon' src={arrowIcon} alt='' />
             </button>
           </div>
+          {/* <img className='pattern' src={backgroundPattern} alt='' /> */}
         </div>
 
         <div className='hero'>
