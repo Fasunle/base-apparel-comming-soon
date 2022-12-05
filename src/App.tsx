@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
 import logo from './assets/logo.svg';
 import arrowIcon from './assets/icon-arrow.svg';
@@ -10,7 +10,6 @@ const App = () => {
     register,
     formState: {errors},
     handleSubmit,
-    reset,
   } = useForm<{email: string}>();
 
   const subscribe = (email: string) => {
@@ -29,12 +28,12 @@ const App = () => {
             </nav>
           </header>
           <h1 className='info__header'>
-            We're <span className='coming'>coming soon</span>
+            We&lsquo;re <span className='coming'>coming soon</span>
           </h1>
           <p className='info__description'>
-            Hello fellow shoppers! We're currently building our new fashion
-            store. Add your email below to stay up-to-date with announcements
-            and our launch deals.
+            Hello fellow shoppers! We&lsquo;re currently building our new
+            fashion store. Add your email below to stay up-to-date with
+            announcements and our launch deals.
           </p>
           <form
             className='email'
@@ -55,7 +54,8 @@ const App = () => {
               placeholder='Email Address'
               className={`input--email${
                 errors.email?.message ? ' input--error' : ''
-              }`}
+              }
+              `}
             />
             <div className='cta'>
               {errors.email?.message && <span className='error--icon'></span>}
