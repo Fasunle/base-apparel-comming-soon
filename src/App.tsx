@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useForm} from 'react-hook-form';
 import logo from './assets/logo.svg';
 import arrowIcon from './assets/icon-arrow.svg';
-import backgroundPattern from './assets/bg-pattern-desktop.svg';
 import heroMobileImage from './assets/hero-mobile.jpg';
 import heroDesktopImage from './assets/hero-desktop.jpg';
 
 const App = () => {
+  const {
+    register,
+    formState: {errors},
+    handleSubmit,
+    reset,
+  } = useForm<{email: string}>();
+
+  const subscribe = (email: string) => {
+    console.log(email);
+  };
+
   return (
     <div className='app'>
       <main className='content'>
@@ -25,18 +36,35 @@ const App = () => {
             store. Add your email below to stay up-to-date with announcements
             and our launch deals.
           </p>
-          <div className='email'>
+          <form
+            className='email'
+            onSubmit={handleSubmit(({email}) => {
+              // subscription logic
+              subscribe(email);
+            })}
+          >
             <input
-              type='email'
-              name='email'
+              {...register('email', {
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/i,
+                  message: 'Please provide a valid email',
+                },
+                required: true,
+              })}
               placeholder='Email Address'
-              className='input--email'
+              className={`input--email${
+                errors.email?.message ? ' input--error' : ''
+              }`}
             />
-            <button className='btn btn--subscribe'>
-              <img className='icon' src={arrowIcon} alt='' />
-            </button>
-          </div>
-          {/* <img className='pattern' src={backgroundPattern} alt='' /> */}
+            <div className='cta'>
+              {errors.email?.message && <span className='error--icon'></span>}
+              <button className='btn btn--subscribe' type='submit'>
+                <img className='icon' src={arrowIcon} alt='' />
+              </button>
+            </div>
+          </form>
+          <p className='error'>{errors.email?.message}</p>
         </div>
 
         <div className='hero'>

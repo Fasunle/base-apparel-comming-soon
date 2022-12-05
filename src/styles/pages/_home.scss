@@ -27,7 +27,7 @@
 
     @include tablet-up {
       flex-direction: row;
-      place-content: center;
+      place-content: flex-end;
       height: 100vh;
       place-items: stretch;
       margin: auto;
@@ -40,6 +40,7 @@
         object-fit: cover;
         height: 100%;
         padding: 1em;
+        padding-right: 2em;
 
         .logo {
           margin-bottom: 2em;
@@ -97,53 +98,76 @@
         font-size: 0.725rem;
         line-height: 1.5;
       }
+      .error {
+        color: red !important;
+        text-align: justify;
+        padding-left: 1em;
+      }
     }
 
     .email {
       position: relative;
       margin: 1em 0;
 
-      input[type='email'] {
+      .input--email {
         border-radius: 2em;
         background-color: transparent;
-        border: 2px solid #a9a9a9e0;
-        padding: 0.25em 1em;
+        border: 2px solid #f1e5e6;
+        padding: 0.125em 1em;
         padding-right: 3rem;
         outline: none;
         font-size: 1.2rem;
         width: 100%;
+
+        &::placeholder {
+          color: #f1e5e6;
+          font-size: 1rem;
+        }
       }
 
-      .btn--subscribe {
+      .cta {
+        display: flex;
         position: absolute;
         top: 0;
         right: -0.5em;
         bottom: 0;
-        border-radius: 38%;
-        border: none;
-        background: linear-gradient(
-          90deg,
-          lighten($primary-clr, 10%),
-          $secondary-clr
-        );
-        box-shadow: -1px 2px 2px 0px $primary-clr;
-        width: 4rem;
-        cursor: pointer;
 
-        &:hover {
-          background: linear-gradient(
-            -90deg,
-            lighten($primary-clr, 10%),
-            $secondary-clr
-          );
-        }
-
-        .icon {
-          width: unset;
-          min-width: unset;
+        .error--icon {
+          width: 2rem;
+          height: 2rem;
           margin: auto;
+          margin-right: 0.4em;
+          background: url('/icon-error.svg') no-repeat center;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .btn--subscribe {
+          border-radius: 38%;
+          border: none;
+          background-color: $secondary-clr;
+          box-shadow: -1px 2px 2px 0px $primary-clr;
+          width: 4rem;
+          cursor: pointer;
+
+          &:hover {
+            background: linear-gradient(
+              -90deg,
+              lighten($primary-clr, 10%),
+              $secondary-clr
+            );
+          }
+
+          .icon {
+            width: unset;
+            min-width: unset;
+            margin: auto;
+          }
         }
       }
     }
   }
+}
+
+.input--error {
+  border-color: red !important;
 }
